@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const RegisterPage = () => {
+  const [pasMatch, setPasMatch] = useState(true)
   const handleSUbmit = (e) =>{
     e.preventDefault();
 
@@ -8,6 +10,9 @@ const RegisterPage = () => {
     const email = form.email.value;
     const password = form.password.value;
     const confirm_password = form.confirm_password.value;
+    if(password !== confirm_password){
+      setPasMatch(false)
+    }
 
     console.log(email, password, confirm_password);
   }
@@ -61,11 +66,11 @@ const RegisterPage = () => {
                 required
               />
             </div>
-            {/* {!passMatch && ( */}
+            {!pasMatch && (
               <div className="my-2">
                 <p className="text-red-500">Passwords do not match!</p>
               </div>
-            {/* )} */}
+              )} 
             <div className="form-control mt-6">
               <input
                 className="btn bg-red-500 text-white"
