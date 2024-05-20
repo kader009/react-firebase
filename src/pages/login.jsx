@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import GoogleLogin from '../components/Login-Register/GoogleLogin';
 
 const Loginpage = () => {
-  const handleSubmit = (e) =>{
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     const form = e.target;
@@ -9,7 +10,7 @@ const Loginpage = () => {
     const password = form.password.value;
 
     console.log(email, password);
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit} className="hero min-h-screen bg-base-200">
@@ -57,11 +58,11 @@ const Loginpage = () => {
               />
             </div>
             <div className="mt-6">
-              {/* <GoogleLogin /> */}
+              <GoogleLogin />
             </div>
             <div className="mt-6">
               <p>
-                New here?{" "}
+                New here?{' '}
                 <Link to="/register" className="text-red-500">
                   Register
                 </Link>
