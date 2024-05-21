@@ -1,21 +1,26 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
 
 const RegisterPage = () => {
-  const [pasMatch, setPasMatch] = useState(true)
-  const handleSUbmit = (e) =>{
+  const { Createuser } = useAuth();
+  const [pasMatch, setPasMatch] = useState(true);
+  const handleSUbmit = (e) => {
     e.preventDefault();
 
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
     const confirm_password = form.confirm_password.value;
-    if(password !== confirm_password){
-      setPasMatch(false)
+
+    if (password !== confirm_password) {
+      setPasMatch(false);
     }
 
+    Createuser(email, password)
+
     console.log(email, password, confirm_password);
-  }
+  };
 
   return (
     <form onSubmit={handleSUbmit} className="hero min-h-screen bg-base-200">
@@ -70,7 +75,7 @@ const RegisterPage = () => {
               <div className="my-2">
                 <p className="text-red-500">Passwords do not match!</p>
               </div>
-              )} 
+            )}
             <div className="form-control mt-6">
               <input
                 className="btn bg-red-500 text-white"
@@ -78,12 +83,10 @@ const RegisterPage = () => {
                 value="Register"
               />
             </div>
-            <div className="mt-6">
-              {/* <GoogleLogin /> */}
-            </div>
+            <div className="mt-6">{/* <GoogleLogin /> */}</div>
             <div className="mt-6">
               <p>
-                Already have an account?{" "}
+                Already have an account?{' '}
                 <Link to="/login" className="text-red-500">
                   Login
                 </Link>
