@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
+  const {logOut} = useAuth()
+  const SignOut = () =>{
+    logOut()
+  }
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -44,6 +49,7 @@ const Navbar = () => {
               </li>
               <li>
                 <button
+                onClick={SignOut}
                   className="btn bg-red-500 text-white"
                 >
                   Logout
