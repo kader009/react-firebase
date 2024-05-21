@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
-  const {logOut} = useAuth()
+  const {logOut, user} = useAuth()
   const SignOut = () =>{
     logOut()
   }
@@ -79,16 +79,20 @@ const Navbar = () => {
               <Link to={"/dashboard"}>Dashboard</Link>
             </li>
         </ul>
+        <div>
+          {user?.displayName}
+        </div>
       </div>
       <div className="navbar-end space-x-2">
           <button
+          onClick={SignOut}
             className="btn bg-red-500 text-white hidden lg:block"
           >
             Logout
           </button>
         <div className="avatar">
           <div className="w-12 rounded-full border-2 border-black">
-            <img src={ "/public/placeholder.jpg"} />
+            <img src={ user?.photoURL} />
           </div>
         </div>
       </div>
