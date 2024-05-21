@@ -1,10 +1,14 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 
 const RegisterPage = () => {
-  const { Createuser } = useAuth();
+  const { Createuser, user } = useAuth();
   const [pasMatch, setPasMatch] = useState(true);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location?.state?.from?.pathname || '/';
+
   const handleSUbmit = (e) => {
     e.preventDefault();
 
@@ -20,6 +24,10 @@ const RegisterPage = () => {
     Createuser(email, password)
 
     console.log(email, password, confirm_password);
+
+    if(user){
+      navigate(from)
+    }
   };
 
   return (
