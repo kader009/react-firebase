@@ -2,12 +2,14 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import GoogleLogin from '../components/Login-Register/GoogleLogin';
 import useAuth from '../hooks/useAuth';
 import { useEffect } from 'react';
+import GithubLogin from '../components/Login-Register/GithubLogin';
 
 const Loginpage = () => {
   const { Signin, user } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const from = location?.state?.from?.pathname || '/';
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -15,19 +17,16 @@ const Loginpage = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    // console.log(email, password);
     await Signin(email, password);
 
     form.reset();
-
   };
 
-  useEffect(() =>{
-    if(user){
-      navigate(from)
+  useEffect(() => {
+    if (user) {
+      navigate(from);
     }
-  },[user, from , navigate])
-  
+  }, [user, from, navigate]);
 
   return (
     <form onSubmit={handleSubmit} className="hero min-h-screen bg-base-200">
@@ -77,6 +76,10 @@ const Loginpage = () => {
             <div className="mt-6">
               <GoogleLogin />
             </div>
+            <div className="mt-6">
+              <GithubLogin />
+            </div>
+
             <div className="mt-6">
               <p>
                 New here?{' '}

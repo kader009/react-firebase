@@ -4,6 +4,7 @@ import { app } from '../firebase/firebase.config';
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  GithubAuthProvider,
   GoogleAuthProvider,
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -15,17 +16,18 @@ export const AuthContext = createContext(null);
 const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
-  const [user, Setuser] = useState(null)
-  const [loading, SetLoading] = useState(true)
+  const [user, Setuser] = useState(null);
+  const [loading, SetLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
 
   const Createuser = (email, password) => {
-    SetLoading(true)
+    SetLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const Signin = (email, password) => {
-    SetLoading(true)
+    SetLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
@@ -33,18 +35,22 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
-  const logOut = () =>{
-    return signOut(auth).then(() => Setuser(null))
-  }
+  const githubLogin = () => {
+    return signInWithPopup(auth, githubProvider);
+  };
+
+  const logOut = () => {
+    return signOut(auth).then(() => Setuser(null));
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (Currentuser) => {
-      Setuser(Currentuser)
-      SetLoading(false)
+      Setuser(Currentuser);
+      SetLoading(false);
       if (Currentuser) {
         console.log(Currentuser);
-      }else{
-        SetLoading(false)
+      } else {
+        SetLoading(false);
       }
     });
 
@@ -53,7 +59,7 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
-  const authInfo = { googleLogin, Createuser, Signin, logOut, user, loading };
+  const authInfo = { googleLogin, Createuser, Signin, logOut, user, loading, githubLogin };
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
