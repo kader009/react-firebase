@@ -21,12 +21,10 @@ const RegisterPage = () => {
       setPasMatch(false);
     }
 
-    Createuser(email, password)
+    Createuser(email, password);
 
-    console.log(email, password, confirm_password);
-
-    if(user){
-      navigate(from)
+    if (user) {
+      navigate(from);
     }
   };
 

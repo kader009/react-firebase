@@ -1,11 +1,13 @@
-import { Link } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
+import { Link } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
 
 const Navbar = () => {
-  const {logOut, user} = useAuth()
-  const SignOut = () =>{
-    logOut()
-  }
+  const { logOut, user } = useAuth();
+
+  const SignOut = async () => {
+    await logOut();
+  };
+
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -31,30 +33,27 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <Link to={"/"}>Home</Link>
+              <Link to={'/'}>Home</Link>
             </li>
             <li>
-              <Link to={"/about"}>About</Link>
+              <Link to={'/about'}>About</Link>
             </li>
-              <>
-                <li>
-                  <Link to={"/login"}>Login</Link>
-                </li>
-                <li>
-                  <Link to={"/register"}>Register</Link>
-                </li>
-              </>
+            <>
               <li>
-                <Link to={"/dashboard"}>Dashboard</Link>
+                <Link to={'/login'}>Login</Link>
               </li>
               <li>
-                <button
-                onClick={SignOut}
-                  className="btn bg-red-500 text-white"
-                >
-                  Logout
-                </button>
+                <Link to={'/register'}>Register</Link>
               </li>
+            </>
+            <li>
+              <Link to={'/dashboard'}>Dashboard</Link>
+            </li>
+            <li>
+              <button onClick={SignOut} className="btn bg-red-500 text-white">
+                Logout
+              </button>
+            </li>
           </ul>
         </div>
         <a className="btn btn-ghost text-xl">daisyUI</a>
@@ -62,37 +61,35 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link to={"/"}>Home</Link>
+            <Link to={'/'}>Home</Link>
           </li>
           <li>
-            <Link to={"/about"}>About</Link>
+            <Link to={'/about'}>About</Link>
           </li>
-            <>
-              <li>
-                <Link to={"/login"}>Login</Link>
-              </li>
-              <li>
-                <Link to={"/register"}>Register</Link>
-              </li>
-            </>
+          <>
             <li>
-              <Link to={"/dashboard"}>Dashboard</Link>
+              <Link to={'/login'}>Login</Link>
             </li>
+            <li>
+              <Link to={'/register'}>Register</Link>
+            </li>
+          </>
+          <li>
+            <Link to={'/dashboard'}>Dashboard</Link>
+          </li>
         </ul>
-        <div>
-          {user?.displayName}
-        </div>
+        <div>{user?.displayName}</div>
       </div>
       <div className="navbar-end space-x-2">
-          <button
+        <button
           onClick={SignOut}
-            className="btn bg-red-500 text-white hidden lg:block"
-          >
-            Logout
-          </button>
+          className="btn bg-red-500 text-white hidden lg:block"
+        >
+          Logout
+        </button>
         <div className="avatar">
           <div className="w-12 rounded-full border-2 border-black">
-            <img src={ user?.photoURL} />
+            <img src={user?.photoURL} />
           </div>
         </div>
       </div>
