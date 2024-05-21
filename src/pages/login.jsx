@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import GoogleLogin from '../components/Login-Register/GoogleLogin';
 import useAuth from '../hooks/useAuth';
 
 const Loginpage = () => {
+  const navigate = useNavigate()
   const { Signin } = useAuth();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,6 +14,8 @@ const Loginpage = () => {
 
     console.log(email, password);
     Signin(email, password)
+    form.reset()
+    navigate('/')
   };
 
   return (
