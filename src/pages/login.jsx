@@ -3,6 +3,7 @@ import GoogleLogin from '../components/Login-Register/GoogleLogin';
 import useAuth from '../hooks/useAuth';
 import { useEffect } from 'react';
 import GithubLogin from '../components/Login-Register/GithubLogin';
+import FacebookLogin from '../components/Login-Register/FacebookLogin';
 
 const Loginpage = () => {
   const { Signin, user } = useAuth();
@@ -78,6 +79,9 @@ const Loginpage = () => {
             </div>
             <div className="mt-6">
               <GithubLogin />
+            </div>
+            <div className="mt-6">
+              <FacebookLogin />
             </div>
 
             <div className="mt-6">
