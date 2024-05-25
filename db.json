@@ -1,0 +1,52 @@
+{
+  "shoes": [
+    {
+      "id": "1",
+      "brand": "Nike",
+      "model": "Air Max 270",
+      "color": "Black/White",
+      "size": 10,
+      "price": 150
+    },
+    {
+      "id": "3",
+      "brand": "Puma",
+      "model": "Suede Classic",
+      "color": "Red/White",
+      "size": 8,
+      "price": 65
+    },
+    {
+      "id": "4",
+      "brand": "Reebok",
+      "model": "Club C 85",
+      "color": "White/Green",
+      "size": 11,
+      "price": 75
+    },
+    {
+      "id": "5",
+      "brand": "Asics",
+      "model": "Gel-Kayano 27",
+      "color": "Blue/Orange",
+      "size": 10.5,
+      "price": 160
+    },
+    {
+      "id": "2",
+      "brand": "Asus",
+      "model": "pakija",
+      "color": "brown",
+      "size": 11,
+      "price": 21
+    },
+    {
+      "id": "8",
+      "brand": "Halfget",
+      "model": "fikiya",
+      "color": "dodgerblue",
+      "size": 8,
+      "price": 45
+    }
+  ]
+}
