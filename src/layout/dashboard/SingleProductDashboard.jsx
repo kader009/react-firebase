@@ -1,24 +1,44 @@
 /* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 
 const SingleProductDashboard = ({ shoe, handleupdate }) => {
   const { id, brand, model, color, size, price } = shoe;
 
   const handleDelete = async () => {
-    await fetch(`http://localhost:3000/shoes/${id}`, {
-      method: 'DELETE',
-    })
-      .then((res) => res.json())
-      .then((data) => {
+    const userConfirmed = window.confirm(
+      'Are you sure you want to delete this product?'
+    );
+    if (!userConfirmed) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:3000/shoes/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        const data = await response.json();
         console.log(data);
         handleupdate(id);
-      });
+        toast.success('Product deleted successfully!');
+      } else {
+        console.error('Failed to delete product');
+        toast.error('Failed to delete product.');
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+      toast.error('An error occurred while deleting the product.');
+    }
   };
 
   return (
+    <>
     <div className="card w-96 bg-base-100 shadow-xl">
+      <ToastContainer />
       <figure>
-        <img
+        <img className='rounded-md'
           src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
           alt="Shoes"
         />
@@ -43,6 +63,7 @@ const SingleProductDashboard = ({ shoe, handleupdate }) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

@@ -41,14 +41,6 @@
       "price": 21
     },
     {
-      "id": "8",
-      "brand": "Halfget",
-      "model": "fikiya",
-      "color": "dodgerblue",
-      "size": 8,
-      "price": 45
-    },
-    {
       "id": "9",
       "brand": "Tesla",
       "model": "f3i",
@@ -71,22 +63,6 @@
       "color": "hot pink",
       "size": 23,
       "price": 22
-    },
-    {
-      "id": "7",
-      "brand": "Lotto",
-      "model": "premium",
-      "color": "gorgeous ",
-      "size": 12,
-      "price": 100
-    },
-    {
-      "id": "11",
-      "brand": "Lucia",
-      "model": "moja",
-      "color": "white",
-      "size": 11,
-      "price": 160
     }
   ]
 }
