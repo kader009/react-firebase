@@ -1,5 +1,5 @@
-import { FcGraduationCap } from "react-icons/fc";
-import useAuth from "../../hooks/useAuth";
+import { FcGraduationCap } from 'react-icons/fc';
+import useAuth from '../../hooks/useAuth';
 
 const GithubLogin = () => {
   const { githubLogin } = useAuth();

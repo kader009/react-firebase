@@ -17,7 +17,6 @@ const ProductsDetail = () => {
           <h2 className="card-title">Name: {brand}</h2>
           <p>Model: {model}</p>
           <p>Price: {price}</p>
-          
         </div>
       </div>
     </div>

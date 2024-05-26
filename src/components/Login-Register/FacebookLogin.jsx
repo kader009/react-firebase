@@ -1,5 +1,5 @@
-import { FcFactoryBreakdown } from "react-icons/fc";
-import useAuth from "../../hooks/useAuth";
+import { FcFactoryBreakdown } from 'react-icons/fc';
+import useAuth from '../../hooks/useAuth';
 
 const FacebookLogin = () => {
   const { facebookLogin } = useAuth();

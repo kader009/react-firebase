@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-// import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const SingleProductDashboard = ({ shoe, handleupdate }) => {
@@ -12,7 +11,7 @@ const SingleProductDashboard = ({ shoe, handleupdate }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        handleupdate(id)
+        handleupdate(id);
       });
   };
 
@@ -46,7 +45,5 @@ const SingleProductDashboard = ({ shoe, handleupdate }) => {
     </div>
   );
 };
-
-
 
 export default SingleProductDashboard;

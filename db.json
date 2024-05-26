@@ -18,7 +18,7 @@
     },
     {
       "id": "4",
-      "brand": "Reebok",
+      "brand": "Reebook",
       "model": "Club C 85",
       "color": "White/Green",
       "size": 11,
@@ -79,6 +79,14 @@
       "color": "gorgeous ",
       "size": 12,
       "price": 100
+    },
+    {
+      "id": "11",
+      "brand": "Lucia",
+      "model": "moja",
+      "color": "white",
+      "size": 11,
+      "price": 160
     }
   ]
 }

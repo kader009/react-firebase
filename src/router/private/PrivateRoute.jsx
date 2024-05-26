@@ -5,17 +5,17 @@ import LoadingSpinner from '../../components/LoadingSpinner';
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
-  const location = useLocation()
+  const location = useLocation();
 
-  if(loading){
-    return <LoadingSpinner/>
+  if (loading) {
+    return <LoadingSpinner />;
   }
 
   if (user) {
     return children;
   }
 
-  return <Navigate to={'/login'} state={{from:location}} replace={true}/>
+  return <Navigate to={'/login'} state={{ from: location }} replace={true} />;
 };
 
 PrivateRoute.propTypes = {

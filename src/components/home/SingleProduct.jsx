@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const SingleProduct = ({ shoe }) => {
   const { id, brand, model, color, size, price } = shoe;
-  
+
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <figure>

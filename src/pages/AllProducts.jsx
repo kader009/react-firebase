@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-// import SingleProduct from "../components/home/SingleProduct";
 import SingleProductDashboard from '../layout/dashboard/SingleProductDashboard';
 
 const AllProducts = () => {

@@ -2,18 +2,16 @@ import PropTypes from 'prop-types';
 import SingleProduct from './SingleProduct';
 
 const Products = ({ data }) => {
-  // console.log(data);
-  
   return (
-    <div >
+    <div>
       <h1 className="my-8 text-2xl font-bold text-center">Our Products</h1>
 
-      <div className="flex gap-2 flex-wrap px-6 justify-center items-center ">
+      <div className="flex gap-4 flex-wrap px-6 justify-center items-center ">
         {data?.slice(0, 3)?.map((shoe) => (
           <SingleProduct key={shoe.id} shoe={shoe} />
         ))}
       </div>
-    </div> 
+    </div>
   );
 };
 

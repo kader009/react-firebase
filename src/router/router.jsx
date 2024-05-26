@@ -10,6 +10,7 @@ import ProductsDetail from '../components/home/ProductsDetail';
 import AllProducts from '../pages/AllProducts';
 import AddProducts from '../pages/AddProducts';
 import EditProducts from '../pages/EditProducts';
+import About from '../pages/About';
 
 const router = createBrowserRouter([
   {
@@ -19,13 +20,17 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <HomePage />,
-        loader: () => fetch('http://localhost:3000/shoes')
+        loader: () => fetch('http://localhost:3000/shoes'),
       },
       {
         path: '/products/:id',
         element: <ProductsDetail />,
-        loader: ({params}) => fetch(`http://localhost:3000/shoes/${params.id}`)
-        
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/shoes/${params.id}`),
+      },
+      {
+        path: '/about',
+        element: <About />,
       },
       {
         path: '/login',
@@ -38,12 +43,12 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "dashboard",
+    path: 'dashboard',
     element: <DashboardLayout />,
     // errorElement: <ErrorPage />,
     children: [
       {
-        path: "",
+        path: '',
         element: (
           <PrivateRoute>
             <Dashboard />
@@ -51,7 +56,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "dashboard/all-products",
+        path: 'dashboard/all-products',
         element: (
           <PrivateRoute>
             <AllProducts />
@@ -59,7 +64,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "dashboard/add-products",
+        path: 'dashboard/add-products',
         element: (
           <PrivateRoute>
             <AddProducts />
@@ -67,13 +72,14 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "dashboard/all-products/edit/:id",
+        path: 'dashboard/all-products/edit/:id',
         element: (
           <PrivateRoute>
             <EditProducts />
           </PrivateRoute>
         ),
-        loader: ({params}) => fetch(`http://localhost:3000/shoes/${params.id}`)
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/shoes/${params.id}`),
       },
     ],
   },
