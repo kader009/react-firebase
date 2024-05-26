@@ -28,17 +28,17 @@ const SingleProductDashboard = ({ shoe, handleupdate }) => {
         <h2 className="card-title">
           {brand} {model}
         </h2>
-        <p>{price}</p>
+        <p>$ {price}</p>
         <p>{color}</p>
         <p>{size}</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-secondary">
-            <Link to={`/products/${id}`}>See More</Link>
+          <button className="btn btn-primary">
+            <Link to={`/products/${id}`}>See Details</Link>
           </button>
-          <button className="btn btn-success">
+          <button className="btn btn-success text-white">
             <Link to={`edit/${id}`}>Edit</Link>
           </button>
-          <button onClick={handleDelete} className="btn bg-red-700 text-white">
+          <button onClick={handleDelete} className="btn bg-error text-white">
             Delete
           </button>
         </div>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const SingleProduct = ({ shoe }) => {
   const { id, brand, model, color, size, price } = shoe;
-  console.log(shoe);
+  
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <figure>
@@ -16,7 +16,7 @@ const SingleProduct = ({ shoe }) => {
         <h2 className="card-title">
           {brand} {model}
         </h2>
-        <p>{price}</p>
+        <p>$ {price}</p>
         <p>{color}</p>
         <p>{size}</p>
         <div className="card-actions justify-end">

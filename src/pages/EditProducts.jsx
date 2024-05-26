@@ -1,4 +1,5 @@
 import { useLoaderData } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const EditProducts = () => {
   const shoe = useLoaderData();
@@ -18,27 +19,45 @@ const EditProducts = () => {
     price = Number(price);
 
     if (isNaN(id) || isNaN(size) || isNaN(price)) {
-      console.error('Invalid input: ID, size, and price must be numbers.');
+      console.error('Invalid input: size and price must be numbers.');
       return;
     }
 
     const inputData = { id, brand, model, color, size, price };
     console.log(inputData);
 
-    await fetch(`http://localhost:3000/shoes/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(inputData),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    const userConfirmed = window.confirm('Do you want to Update?');
+    if (!userConfirmed) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:3000/shoes/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(inputData),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        toast.success('Product updated successfully!');
+        form.reset();
+      } else {
+        console.error('Failed to edit product');
+        toast.error('Failed to edit product.');
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+      toast.error('An error occurred while adding the product.');
+    }
   };
 
   return (
     <div>
-      <h1 className="text-5xl text-center font-bold capitalize">
+      <h1 className="text-4xl text-center font-bold capitalize">
         Edit products
       </h1>
 
@@ -100,11 +119,7 @@ const EditProducts = () => {
             />
           </div>
           <div>
-            <input
-              className="w-full btn"
-              type="submit"
-              value="Edit Products"
-            />
+            <input className="w-full btn" type="submit" value="Edit Products" />
           </div>
         </form>
       </div>

@@ -2,7 +2,7 @@
   "shoes": [
     {
       "id": "1",
-      "brand": "Nike",
+      "brand": "Nikely",
       "model": "Air Max 270",
       "color": "Black/White",
       "size": 10,
@@ -63,6 +63,22 @@
       "color": "blue",
       "size": 8,
       "price": 64
+    },
+    {
+      "id": "6",
+      "brand": "Alice",
+      "model": "zigzag",
+      "color": "hot pink",
+      "size": 23,
+      "price": 22
+    },
+    {
+      "id": "7",
+      "brand": "Lotto",
+      "model": "premium",
+      "color": "gorgeous ",
+      "size": 12,
+      "price": 100
     }
   ]
 }

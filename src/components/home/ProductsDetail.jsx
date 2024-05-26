@@ -17,9 +17,7 @@ const ProductsDetail = () => {
           <h2 className="card-title">Name: {brand}</h2>
           <p>Model: {model}</p>
           <p>Price: {price}</p>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary">Buy Now</button>
-          </div>
+          
         </div>
       </div>
     </div>

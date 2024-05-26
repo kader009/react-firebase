@@ -1,6 +1,6 @@
 const Accordion = () => {
   return (
-    <div className="my-20 px-8 w-3/4 mx-auto">
+    <div className="my-20 px-8 w-3/4 mx-auto space-y-4">
       <h1 className="my-16 text-center font-bold text-3xl">
         Frequently Asked Questions!
       </h1>

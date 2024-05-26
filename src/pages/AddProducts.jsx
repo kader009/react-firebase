@@ -1,7 +1,8 @@
-import { toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AddProducts = () => {
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -12,14 +13,18 @@ const AddProducts = () => {
     const size = Number(form.size.value);
     const price = Number(form.price.value);
 
-    // Check for valid conversions
     if (isNaN(size) || isNaN(price)) {
-      console.error("Invalid input: Size and price must be numbers.");
+      console.error('Invalid input: Size and price must be numbers.');
       return;
     }
 
     const inputData = { id, brand, model, color, size, price };
     console.log(inputData);
+
+    const userConfirmed = window.confirm('Do you want To Add Products?');
+    if (!userConfirmed) {
+      return;
+    }
 
     try {
       const response = await fetch(`http://localhost:3000/shoes`, {
@@ -47,7 +52,9 @@ const AddProducts = () => {
 
   return (
     <div>
-      <h1 className="text-5xl text-center font-bold capitalize">add products</h1>
+      <h1 className="text-4xl text-center font-bold capitalize">
+        add products
+      </h1>
 
       <div className="my-16">
         <form onSubmit={handleSubmit} className="space-y-2">
