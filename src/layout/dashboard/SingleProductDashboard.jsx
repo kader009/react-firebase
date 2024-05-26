@@ -36,7 +36,7 @@ const SingleProductDashboard = ({ shoe, handleupdate }) => {
             <Link to={`/products/${id}`}>See More</Link>
           </button>
           <button className="btn btn-success">
-            <Link to={`/products/${id}`}>Edit</Link>
+            <Link to={`edit/${id}`}>Edit</Link>
           </button>
           <button onClick={handleDelete} className="btn bg-red-700 text-white">
             Delete
@@ -47,15 +47,6 @@ const SingleProductDashboard = ({ shoe, handleupdate }) => {
   );
 };
 
-// SingleProductDashboard.propTypes = {
-//   shoe: PropTypes.shape({
-//     id: PropTypes.number.isRequired,
-//     brand: PropTypes.string.isRequired,
-//     model: PropTypes.string.isRequired,
-//     color: PropTypes.string.isRequired,
-//     size: PropTypes.number.isRequired,
-//     price: PropTypes.number.isRequired,
-//   }).isRequired,
-// };
+
 
 export default SingleProductDashboard;

@@ -21,7 +21,7 @@ const SingleProduct = ({ shoe }) => {
         <p>{size}</p>
         <div className="card-actions justify-end">
           <button className="btn btn-primary">
-            <Link to={`/products/${id}`}>See More</Link>
+            <Link to={`/products/${id}`}>See Details</Link>
           </button>
         </div>
       </div>

@@ -50,13 +50,13 @@ const Navbar = () => {
               <Link to={'/dashboard'}>Dashboard</Link>
             </li>
             <li>
-              <button onClick={SignOut} className="btn bg-red-500 text-white">
+              <button onClick={SignOut} className="btn btn-primary text-white">
                 Logout
               </button>
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className="btn btn-ghost text-xl">Firebase</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
@@ -78,12 +78,12 @@ const Navbar = () => {
             <Link to={'/dashboard'}>Dashboard</Link>
           </li>
         </ul>
-        <div>{user?.displayName}</div>
+        <div className='mr-2'>{user?.displayName}</div>
       </div>
-      <div className="navbar-end space-x-2">
+      <div className="navbar-end space-x-96">
         <button
           onClick={SignOut}
-          className="btn bg-red-500 text-white hidden lg:block"
+          className="btn btn-primary text-white hidden lg:block"
         >
           Logout
         </button>

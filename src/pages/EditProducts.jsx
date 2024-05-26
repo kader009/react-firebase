@@ -1,53 +1,46 @@
-import { toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useLoaderData } from 'react-router-dom';
 
-const AddProducts = () => {
+const EditProducts = () => {
+  const shoe = useLoaderData();
+  const { id, brand, model, color, size, price } = shoe;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
-    const id = form.id.value;
+    let id = form.id.value;
     const brand = form.brand.value;
     const model = form.model.value;
     const color = form.color.value;
-    const size = Number(form.size.value);
-    const price = Number(form.price.value);
+    let size = form.size.value;
+    let price = form.price.value;
 
-    // Check for valid conversions
-    if (isNaN(size) || isNaN(price)) {
-      console.error("Invalid input: Size and price must be numbers.");
+    size = Number(size);
+    price = Number(price);
+
+    if (isNaN(id) || isNaN(size) || isNaN(price)) {
+      console.error('Invalid input: ID, size, and price must be numbers.');
       return;
     }
 
     const inputData = { id, brand, model, color, size, price };
     console.log(inputData);
 
-    try {
-      const response = await fetch(`http://localhost:3000/shoes`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(inputData),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-        toast.success('Product added successfully!');
-        form.reset();
-      } else {
-        console.error('Failed to add product');
-        toast.error('Failed to add product.');
-      }
-    } catch (error) {
-      console.error('An error occurred:', error);
-      toast.error('An error occurred while adding the product.');
-    }
+    await fetch(`http://localhost:3000/shoes/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(inputData),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
 
   return (
     <div>
-      <h1 className="text-5xl text-center font-bold capitalize">add products</h1>
+      <h1 className="text-5xl text-center font-bold capitalize">
+        Edit products
+      </h1>
 
       <div className="my-16">
         <form onSubmit={handleSubmit} className="space-y-2">
@@ -57,7 +50,7 @@ const AddProducts = () => {
               type="text"
               name="brand"
               placeholder="Brand"
-              required
+              defaultValue={brand}
             />
           </div>
           <div>
@@ -66,7 +59,7 @@ const AddProducts = () => {
               type="text"
               name="model"
               placeholder="Model"
-              required
+              defaultValue={model}
             />
           </div>
           <div>
@@ -75,7 +68,7 @@ const AddProducts = () => {
               type="text"
               name="color"
               placeholder="Color"
-              required
+              defaultValue={color}
             />
           </div>
           <div>
@@ -84,7 +77,7 @@ const AddProducts = () => {
               type="number"
               name="size"
               placeholder="Size"
-              required
+              defaultValue={size}
             />
           </div>
           <div>
@@ -93,7 +86,7 @@ const AddProducts = () => {
               type="number"
               name="price"
               placeholder="Price"
-              required
+              defaultValue={price}
             />
           </div>
           <div>
@@ -102,11 +95,16 @@ const AddProducts = () => {
               type="text"
               name="id"
               placeholder="ID"
-              required
+              defaultValue={id}
+              disabled
             />
           </div>
           <div>
-            <input className="w-full btn" type="submit" value="Add Products" />
+            <input
+              className="w-full btn"
+              type="submit"
+              value="Edit Products"
+            />
           </div>
         </form>
       </div>
@@ -114,4 +112,4 @@ const AddProducts = () => {
   );
 };
 
-export default AddProducts;
+export default EditProducts;
