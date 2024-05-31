@@ -13,6 +13,7 @@ const RegisterPage = () => {
     e.preventDefault();
 
     const form = e.target;
+    const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
     const confirm_password = form.confirm_password.value;
@@ -21,7 +22,22 @@ const RegisterPage = () => {
       setPasMatch(false);
     }
 
-    Createuser(email, password);
+    Createuser( email, password).then((data) => {
+      if (data?.user?.email) {
+        const userInfo = {
+          email: data?.user?.email,
+          name: name,
+        };
+        fetch(`http://localhost:5000/user`, {
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json',
+          },
+          body: JSON.stringify(userInfo),
+        });
+      }
+      form.reset()
+    });
 
     if (user) {
       navigate(from);
@@ -41,6 +57,18 @@ const RegisterPage = () => {
         </div>
         <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <div className="card-body">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                type="name"
+                placeholder="name"
+                className="input input-bordered"
+                name="name"
+                required
+              />
+            </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
