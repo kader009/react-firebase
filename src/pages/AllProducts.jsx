@@ -2,16 +2,16 @@ import { useEffect, useState } from 'react';
 import SingleProductDashboard from '../layout/dashboard/SingleProductDashboard';
 
 const AllProducts = () => {
-  const [products, SetProducts] = useState([]);
+  const [products, SetProducts] = useState([]); 
 
   useEffect(() => {
-    fetch(`http://localhost:3000/shoes`)
+    fetch(`http://localhost:5000/shoes`)
       .then((res) => res.json())
       .then((data) => SetProducts(data));
   }, []);
 
   const handleupdate = (id) => {
-    SetProducts(products.filter((product) => product.id !== id));
+    SetProducts(products.filter((product) => product._id !== id));
   };
 
   return (
@@ -23,7 +23,7 @@ const AllProducts = () => {
       <div className="my-12 flex justify-center flex-wrap items-center gap-3">
         {products.map((shoe) => (
           <SingleProductDashboard
-            key={shoe.id}
+            key={shoe._id}
             shoe={shoe}
             handleupdate={handleupdate}
           />

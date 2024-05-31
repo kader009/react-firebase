@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const EditProducts = () => {
   const shoe = useLoaderData();
-  const { id, brand, model, color, size, price } = shoe;
+  const { _id, brand, model, color, size, price } = shoe;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +21,7 @@ const EditProducts = () => {
       return;
     }
 
-    const inputData = { id, brand, model, color, size, price };
+    const inputData = { _id, brand, model, color, size, price };
     console.log(inputData);
 
     const userConfirmed = window.confirm('Do you want to update this product?');
@@ -30,7 +30,7 @@ const EditProducts = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/shoes/${id}`, {
+      const response = await fetch(`http://localhost:5000/shoes/${shoe._id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -124,19 +124,7 @@ const EditProducts = () => {
             required
           />
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="id" className="mb-1 font-semibold">
-            ID
-          </label>
-          <input
-            className="bg-gray-100 border border-gray-300 rounded-lg p-4 w-full focus:outline-none focus:border-blue-500"
-            type="text"
-            name="id"
-            placeholder="ID"
-            defaultValue={id}
-            disabled
-          />
-        </div>
+        
         <div>
           <button
             type="submit"

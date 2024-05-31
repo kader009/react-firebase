@@ -63,6 +63,14 @@
       "color": "hot pink",
       "size": 23,
       "price": 22
+    },
+    {
+      "id": "f083",
+      "brand": "Testing",
+      "model": "f3i",
+      "color": "goods",
+      "size": 11,
+      "price": 2000
     }
   ]
 }

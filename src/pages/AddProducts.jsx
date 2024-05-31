@@ -5,7 +5,6 @@ const AddProducts = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
-    const id = form.id.value;
     const brand = form.brand.value;
     const model = form.model.value;
     const color = form.color.value;
@@ -17,7 +16,7 @@ const AddProducts = () => {
       return;
     }
 
-    const inputData = { id, brand, model, color, size, price };
+    const inputData = { brand, model, color, size, price };
     console.log(inputData);
 
     const userConfirmed = window.confirm('Do you want to add this product?');
@@ -26,7 +25,7 @@ const AddProducts = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/shoes`, {
+      const response = await fetch(`http://localhost:5000/shoes`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -115,7 +114,7 @@ const AddProducts = () => {
             required
           />
         </div>
-        <div className="flex flex-col">
+        {/* <div className="flex flex-col">
           <label htmlFor="id" className="mb-1 font-semibold">
             ID
           </label>
@@ -126,7 +125,7 @@ const AddProducts = () => {
             placeholder="ID"
             required
           />
-        </div>
+        </div> */}
         <div>
           <button
             type="submit"

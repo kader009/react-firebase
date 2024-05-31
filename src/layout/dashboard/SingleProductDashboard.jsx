@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const SingleProductDashboard = ({ shoe, handleupdate }) => {
-  const { id, brand, model, color, size, price } = shoe;
+  const { _id, brand, model, color, size, price } = shoe;
 
   const handleDelete = async () => {
     const userConfirmed = window.confirm(
@@ -14,14 +14,14 @@ const SingleProductDashboard = ({ shoe, handleupdate }) => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/shoes/${id}`, {
+      const response = await fetch(`http://localhost:5000/shoes/${_id}`, {
         method: 'DELETE',
       });
 
       if (response.ok) {
         const data = await response.json();
         console.log(data);
-        handleupdate(id);
+        handleupdate(_id);
         toast.success('Product deleted successfully!');
       } else {
         console.error('Failed to delete product');
@@ -35,34 +35,35 @@ const SingleProductDashboard = ({ shoe, handleupdate }) => {
 
   return (
     <>
-    <div className="card w-96 bg-base-100 shadow-xl">
-      <ToastContainer />
-      <figure>
-        <img className='rounded-md'
-          src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-          alt="Shoes"
-        />
-      </figure>
-      <div className="card-body">
-        <h2 className="card-title">
-          {brand} {model}
-        </h2>
-        <p>$ {price}</p>
-        <p>{color}</p>
-        <p>{size}</p>
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary">
-            <Link to={`/products/${id}`}>See Details</Link>
-          </button>
-          <button className="btn btn-success text-white">
-            <Link to={`edit/${id}`}>Edit</Link>
-          </button>
-          <button onClick={handleDelete} className="btn bg-error text-white">
-            Delete
-          </button>
+      <div className="card w-96 bg-base-100 shadow-xl">
+        {/* <ToastContainer /> */}
+        <figure>
+          <img
+            className="rounded-md"
+            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+            alt="Shoes"
+          />
+        </figure>
+        <div className="card-body">
+          <h2 className="card-title">
+            {brand} {model}
+          </h2>
+          <p>$ {price}</p>
+          <p>{color}</p>
+          <p>{size}</p>
+          <div className="card-actions justify-end">
+            <button className="btn btn-primary">
+              <Link to={`/products/${_id}`}>See Details</Link>
+            </button>
+            <button className="btn btn-success text-white">
+              <Link to={`edit/${_id}`}>Edit</Link>
+            </button>
+            <button onClick={handleDelete} className="btn bg-error text-white">
+              Delete
+            </button>
+          </div>
         </div>
       </div>
-    </div>
     </>
   );
 };

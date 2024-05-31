@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
-const DashboardLayout = () => {
+const DashboardLayout = () => { 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -10,7 +10,7 @@ const DashboardLayout = () => {
 
   return (
     <div className='min-h-screen flex flex-col md:flex-row'>
-      <div className={`fixed inset-y-0 left-0 z-30 w-64 bg-gray-200 p-4 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 transition-transform duration-200 ease-in-out`}>
+      <div className={`fixed inset-y-0 left-0 z-30 w-64 bg-gray-200 p-4 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 transition-transform duration-200 ease-in-out`}> 
         <ul className='space-y-4 text-center'>
           <li className='border border-black p-4 text w-full rounded'>
             <Link to={''} onClick={() => setIsSidebarOpen(false)}>Dashboard</Link>
