@@ -1,7 +1,18 @@
-import useAuth from '../hooks/useAuth';
+import { useEffect, useState } from 'react';
+import useAuth from '../hooks/useAuth'; 
+import { Link } from 'react-router-dom';
 
-const Dashboard = () => {
+const Dashboard = () => { 
   const { user } = useAuth();
+  const [userInfo, setUserInfo] = useState();
+
+  useEffect(() =>{
+    fetch(`http://localhost:5000/user/${user?.email}`)
+    .then(res => res.json())
+    .then(data => setUserInfo(data))
+  },[user])
+  console.log(userInfo);
+  
   return (
     <div>
       <div className="card card-side bg-base-100 shadow-xl">
@@ -9,10 +20,10 @@ const Dashboard = () => {
           <img className="w-full h-52" src={user?.photoURL} alt="Movie" />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">Name: {user?.displayName}</h2>
-          <p>Email: {user?.email}.</p>
+          <h2 className="card-title">Name: {userInfo?.name}</h2>
+          <p>Email: {userInfo?.email}.</p>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">Profile</button>
+            <button className="btn btn-primary"><Link to={`/dashboard/profile/edit/${userInfo?._id}`}>Edit Profile</Link></button>
           </div>
         </div>
       </div>
