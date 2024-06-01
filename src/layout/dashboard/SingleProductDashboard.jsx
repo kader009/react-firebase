@@ -6,6 +6,7 @@ const SingleProductDashboard = ({ shoe, handleupdate }) => {
   const { _id, brand, model, color, size, price } = shoe;
 
   const handleDelete = async () => {
+    const token = localStorage.getItem('token');
     const userConfirmed = window.confirm(
       'Are you sure you want to delete this product?'
     );
@@ -16,6 +17,7 @@ const SingleProductDashboard = ({ shoe, handleupdate }) => {
     try {
       const response = await fetch(`http://localhost:5000/shoes/${_id}`, {
         method: 'DELETE',
+        authorization: `Bearer ${token}`,
       });
 
       if (response.ok) {

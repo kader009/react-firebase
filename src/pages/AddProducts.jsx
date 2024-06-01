@@ -3,6 +3,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const AddProducts = () => {
   const handleSubmit = async (e) => {
+    const token = localStorage.getItem('token')
     e.preventDefault();
     const form = e.target;
     const brand = form.brand.value;
@@ -25,10 +26,11 @@ const AddProducts = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/shoes`, {
+      const response = await fetch(`http://localhost:5000/shoes`, { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(inputData),
       });

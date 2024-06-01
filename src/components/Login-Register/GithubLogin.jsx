@@ -5,7 +5,9 @@ const GithubLogin = () => {
   const { githubLogin } = useAuth();
 
   const handleGoogleSignIn = () => {
-    githubLogin();
+    githubLogin().then(data =>{
+      console.log(data);
+    });
   };
 
   return (

@@ -5,6 +5,7 @@ const EditProfile = () => {
   console.log(data);
 
   const Handlesubmit = (e) => {
+    const token = localStorage.getItem('token');
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
@@ -18,6 +19,7 @@ const EditProfile = () => {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json',
+        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(userData),
     })
