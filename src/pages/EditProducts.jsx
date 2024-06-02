@@ -6,8 +6,9 @@ import 'react-toastify/dist/ReactToastify.css';
 const EditProducts = () => {
   const shoe = useLoaderData();
   const { _id, brand, model, color, size, price } = shoe;
-
+  
   const handleSubmit = async (e) => {
+    const token = localStorage.getItem('token')
     e.preventDefault();
     const form = e.target;
     const brand = form.brand.value;
@@ -30,10 +31,11 @@ const EditProducts = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/shoes/${shoe._id}`, {
+      const response = await fetch(`http:// localhost:5000/shoes/${shoe._id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
+          authorization: `Bearer ${token}`
         },
         body: JSON.stringify(inputData),
       });

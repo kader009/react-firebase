@@ -2,8 +2,8 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AddProducts = () => {
+  const token = localStorage.getItem('token')
   const handleSubmit = async (e) => {
-    const token = localStorage.getItem('token')
     e.preventDefault();
     const form = e.target;
     const brand = form.brand.value;

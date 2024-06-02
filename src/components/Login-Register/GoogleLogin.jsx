@@ -17,9 +17,11 @@ const GoogleLogin = () => {
             'Content-type': 'application/json',
           },
           body: JSON.stringify(userInfo),
-        }).then(res => res.json()).then(data =>{
-          localStorage.setItem('token', data?.token)
-        });
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            localStorage.setItem('token', data?.token);
+          });
       }
     });
   };
