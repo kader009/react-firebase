@@ -9,6 +9,7 @@ const EditProducts = () => {
   
   const handleSubmit = async (e) => {
     const token = localStorage.getItem('token')
+    console.log(token);
     e.preventDefault();
     const form = e.target;
     const brand = form.brand.value;
@@ -35,7 +36,7 @@ const EditProducts = () => {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
-          authorization: `Bearer ${token}`
+          'authorization': `Bearer ${token}`
         },
         body: JSON.stringify(inputData),
       });

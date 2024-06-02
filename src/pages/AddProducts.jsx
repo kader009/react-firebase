@@ -2,7 +2,8 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AddProducts = () => {
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem('token');
+  console.log(token);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -30,7 +31,7 @@ const AddProducts = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          authorization: `Bearer ${token}`,
+          'authorization': `Bearer ${token}`
         },
         body: JSON.stringify(inputData),
       });

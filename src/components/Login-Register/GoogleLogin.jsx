@@ -5,6 +5,8 @@ const GoogleLogin = () => {
   const { googleLogin } = useAuth();
 
   const handleGoogleSignIn = () => {
+    const token = localStorage.getItem('token')
+    console.log(token);
     googleLogin().then((data) => {
       if (data?.user?.email) {
         const userInfo = {
@@ -15,6 +17,7 @@ const GoogleLogin = () => {
           method: 'POST',
           headers: {
             'Content-type': 'application/json',
+            'authorization': `Bearer ${token}`
           },
           body: JSON.stringify(userInfo),
         })
