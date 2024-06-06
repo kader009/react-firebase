@@ -14,7 +14,7 @@ const EditProfile = () => {
     const userData = { name, email, age, mobile };
     console.log(userData);
 
-    fetch(`http://localhost:5000/user/${data?.email}`, {
+    fetch(`https://fire-base-backend.onrender.com/user/${data?.email}`, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json',

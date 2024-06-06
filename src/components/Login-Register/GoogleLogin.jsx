@@ -13,7 +13,7 @@ const GoogleLogin = () => {
           email: data?.user?.email,
           name: data?.user?.displayName,
         };
-        fetch(`http://localhost:5000/user`, {
+        fetch(`https://fire-base-backend.onrender.com/user`, {
           method: 'POST',
           headers: {
             'Content-type': 'application/json',
@@ -24,6 +24,7 @@ const GoogleLogin = () => {
           .then((res) => res.json())
           .then((data) => {
             localStorage.setItem('token', data?.token);
+            console.log(data);
           });
       }
     });

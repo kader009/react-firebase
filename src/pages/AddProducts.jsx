@@ -3,7 +3,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const AddProducts = () => {
   const token = localStorage.getItem('token');
-  console.log(token);
+  console.log('Token:', token);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -27,14 +28,40 @@ const AddProducts = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/shoes`, { 
+      let response = await fetch(`https://fire-base-backend.onrender.com/shoes`, { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'authorization': `Bearer ${token}`
+          authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(inputData),
       });
+
+      if (response.status === 401) {
+        // Token might be expired, attempt to refresh it
+        const refreshResponse = await fetch(`https://fire-base-backend.onrender.com/refresh-token`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ token }),
+        });
+
+        if (refreshResponse.ok) {
+          const refreshData = await refreshResponse.json();
+          localStorage.setItem('token', refreshData.token);
+          response = await fetch(`https://fire-base-backend.onrender.com/shoes`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              authorization: `Bearer ${refreshData.token}`,
+            },
+            body: JSON.stringify(inputData),
+          });
+        } else {
+          toast.error('Failed to refresh token.');
+        }
+      }
 
       if (response.ok) {
         const data = await response.json();
@@ -117,18 +144,6 @@ const AddProducts = () => {
             required
           />
         </div>
-        {/* <div className="flex flex-col">
-          <label htmlFor="id" className="mb-1 font-semibold">
-            ID
-          </label>
-          <input
-            className="bg-gray-100 border border-gray-300 rounded-lg p-4 w-full focus:outline-none focus:border-blue-500"
-            type="text"
-            name="id"
-            placeholder="ID"
-            required
-          />
-        </div> */}
         <div>
           <button
             type="submit"

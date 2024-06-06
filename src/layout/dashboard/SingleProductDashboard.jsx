@@ -16,7 +16,7 @@ const SingleProductDashboard = ({ shoe, handleupdate }) => {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/shoes/${_id}`, {
+      const response = await fetch(`https://fire-base-backend.onrender.com/shoes/${_id}`, {
         method: 'DELETE',
         headers: {
           // 'Content-Type': 'application/json',

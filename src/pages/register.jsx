@@ -28,7 +28,7 @@ const RegisterPage = () => {
           email: data?.user?.email,
           name: name,
         };
-        fetch(`http://localhost:5000/user`, {
+        fetch(`https://fire-base-backend.onrender.com/user`, {
           method: 'POST',
           headers: {
             'Content-type': 'application/json',

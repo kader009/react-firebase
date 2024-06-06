@@ -21,13 +21,13 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <HomePage />,
-        loader: () => fetch('http://localhost:5000/shoes'),
+        loader: () => fetch('https://fire-base-backend.onrender.com/shoes'),
       },
       {
         path: '/products/:id',
         element: <ProductsDetail />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/shoes/${params.id}`),
+          fetch(`https://fire-base-backend.onrender.com/shoes/${params.id}`),
       },
       {
         path: '/about',
@@ -64,7 +64,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/user/get/${params.id}`),
+          fetch(`https://fire-base-backend.onrender.com/user/get/${params.id}`),
       },
       {
         path: 'dashboard/all-products',
@@ -90,7 +90,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/shoes/${params.id}`),
+          fetch(`https://fire-base-backend.onrender.com/shoes/${params.id}`),
       },
     ],
   },

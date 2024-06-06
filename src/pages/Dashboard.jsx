@@ -7,7 +7,7 @@ const Dashboard = () => {
   const [userInfo, setUserInfo] = useState();
 
   useEffect(() =>{
-    fetch(`http://localhost:5000/user/${user?.email}`)
+    fetch(`https://fire-base-backend.onrender.com/user/${user?.email}`)
     .then(res => res.json())
     .then(data => setUserInfo(data))
   },[user])
